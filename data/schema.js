@@ -1,12 +1,3 @@
-/**
- *  Copyright (c) 2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
-
 /* eslint no-unused-vars: 0, no-use-before-define: 0 */
 
 import {
@@ -32,13 +23,11 @@ import {
 } from 'graphql-relay';
 
 import {
-  // Import methods that your schema can use to interact with your database
-  User,
-  Widget,
-  getUser,
-  getViewer,
-  getWidget,
-  getWidgets,
+  Note,
+  Notebook,
+  getNote,
+  getNotes,
+  getNotebook,
 } from './database';
 
 /**
@@ -50,63 +39,61 @@ import {
 const { nodeInterface, nodeField } = nodeDefinitions(
   (globalId) => {
     const { type, id } = fromGlobalId(globalId);
-    if (type === 'User') {
-      return getUser(id);
-    } else if (type === 'Widget') {
-      return getWidget(id);
-    } else {
-      return null;
+
+    if (type === 'Note') {
+      return getNote(id);
+    } else if (type === 'Notebook') {
+      return getNotebook();
     }
+
+    return null;
   },
 
   (obj) => {
-    if (obj instanceof User) {
-      return userType;
-    } else if (obj instanceof Widget) {
-      return widgetType;
-    } else {
-      return null;
+    if (obj instanceof Note) {
+      return noteType;
+    } else if (obj instanceof Notebook) {
+      return notebookType;
     }
+
+    return null;
   }
 );
 
-/**
- * Define your own types here
- */
-
-const userType = new GraphQLObjectType({
-  name: 'User',
-  description: 'A person who uses our app',
+const noteType = new GraphQLObjectType({
+  name: 'Note',
+  description: 'A text note authored by the user of our app',
   fields: () => ({
-    id: globalIdField('User'),
-    widgets: {
-      type: widgetConnection,
-      description: 'A person\'s collection of widgets',
-      args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getWidgets(), args),
-    },
-  }),
-  interfaces: [nodeInterface],
-});
-
-const widgetType = new GraphQLObjectType({
-  name: 'Widget',
-  description: 'A shiny widget',
-  fields: () => ({
-    id: globalIdField('Widget'),
-    name: {
+    id: globalIdField('Note'),
+    text: {
       type: GraphQLString,
-      description: 'The name of the widget',
+      description: 'Some insightful content',
+    },
+    timestamp: {
+      type: GraphQLString,
+      description: 'The exact moment when the note was created',
     },
   }),
   interfaces: [nodeInterface],
 });
 
-/**
- * Define your own connection types here
- */
-const { connectionType: widgetConnection } =
-  connectionDefinitions({ name: 'Widget', nodeType: widgetType });
+const notebookType = new GraphQLObjectType({
+  name: 'Notebook',
+  description: 'A notebook containing a collection of notes',
+  fields: () => ({
+    id: globalIdField('Notebook'),
+    notes: {
+      type: noteConnection,
+      description: 'A list of notes',
+      args: connectionArgs,
+      resolve: (notebook, args) => connectionFromArray(getNotes(), args),
+    }
+  }),
+  interfaces: [nodeInterface],
+});
+
+const { connectionType: noteConnection } =
+  connectionDefinitions({ name: 'Note', nodeType: noteType });
 
 /**
  * This is the type that will be the root of our query,
@@ -116,11 +103,9 @@ const queryType = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
     node: nodeField,
-
-    // Add your own root fields here
-    viewer: {
-      type: userType,
-      resolve: () => getViewer(),
+    notebook: {
+      type: notebookType,
+      resolve: () => getNotebook(),
     },
   }),
 });

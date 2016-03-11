@@ -1,33 +1,29 @@
-/**
- *  Copyright (c) 2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
+class Note {
+  constructor(id, text, timestamp) {
+    this.id = id;
+    this.text = text;
+    this.timestamp = timestamp;
+  }
+}
 
-// Model types
-class User {}
-class Widget {}
+class Notebook {
+  constructor(id) {
+    this.id = id;
+    this.notes = [];
+  }
+}
 
 // Mock data
-const viewer = new User();
-viewer.id = '1';
-viewer.name = 'Anonymous';
-const widgets = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
-  const widget = new Widget();
-  widget.name = name;
-  widget.id = `${i}`;
-  return widget;
-});
+const notes = ['Hello, dear diary', 'Today is a beautiful day'].map((text, ix) =>
+  new Note(ix, text, Date.now().toString())
+);
+
+const notebook = new Notebook(1);
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
-  getUser: (id) => id === viewer.id ? viewer : null,
-  getViewer: () => viewer,
-  getWidget: (id) => widgets.find(w => w.id === id),
-  getWidgets: () => widgets,
-  User,
-  Widget,
+  getNote: (id) => notes.find((n) => n.id === id),
+  getNotes: () => notes,
+  getNotebook: () => notebook,
+  Note,
 };
