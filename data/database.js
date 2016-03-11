@@ -12,11 +12,11 @@ class User {}
 class Widget {}
 
 // Mock data
-var viewer = new User();
+const viewer = new User();
 viewer.id = '1';
 viewer.name = 'Anonymous';
-var widgets = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
-  var widget = new Widget();
+const widgets = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
+  const widget = new Widget();
   widget.name = name;
   widget.id = `${i}`;
   return widget;
