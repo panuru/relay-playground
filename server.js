@@ -35,6 +35,10 @@ const compiler = webpack({
         exclude: /node_modules/,
         loader: 'babel',
         test: /\.js$/,
+      }, {
+        exclude: /node_modules/,
+        loaders: ['style', 'css', 'sass'],
+        test: /\.scss$/,
       }
     ]
   },

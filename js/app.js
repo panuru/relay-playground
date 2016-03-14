@@ -1,3 +1,5 @@
+import '../css/common/all.scss';
+
 import 'babel-polyfill';
 
 import App from './components/App';
