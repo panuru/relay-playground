@@ -42,6 +42,9 @@ const compiler = webpack({
       }
     ]
   },
+  sassLoader: {
+    includePaths: [path.resolve(__dirname, './node_modules')]
+  },
   output: { filename: 'app.js', path: '/' }
 });
 const app = new WebpackDevServer(compiler, {

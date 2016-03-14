@@ -2,6 +2,7 @@
     max-width: 960px;
     min-width: 320px;
     margin: 60px auto;
+    padding: 0 1em;
 }
 @media (min-width: 768px) {
     .notebook {
@@ -9,7 +10,11 @@
     }
 }
 
-.notes {}
+.notes {
+    list-style: none;
+    padding: 0;
+    margin: 1.5em 0;
+}
 .notes__item {
     border-bottom: solid 1px lightgray;
     &:last-child {

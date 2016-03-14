@@ -17,6 +17,20 @@ class App extends React.Component {
             </li>
           )}
         </ul>
+        <form className="add-note-form">
+          <div className="input-with-button input-with-button--small">
+            <input
+              className="input add-note-form__input"
+              type="text"
+              placeholder="Add a new note"
+            />
+            <input
+              className="button add-note-form__button"
+              type="button"
+              value="+"
+            />
+          </div>
+        </form>
       </div>
     );
   }
