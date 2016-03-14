@@ -1,24 +1,31 @@
 class Note {
-  constructor(id, text, timestamp) {
-    this.id = id;
+  static _lastId = 0;
+
+  constructor({ id, text }) {
+    this.id = id || ++Note._lastId;
     this.text = text;
-    this.timestamp = timestamp;
+    this.timestamp = Date.now().toString();
   }
 }
 
 class Notebook {
-  constructor(id) {
-    this.id = id;
-    this.notes = [];
+  static _lastId = 0;
+
+  constructor({ id, notes }) {
+    this.id = id || ++Notebook._lastId;
+    this.notes = notes || [];
   }
 }
 
 // Mock data
-const notes = ['Hello, dear diary', 'Today is a beautiful day'].map((text, ix) =>
-  new Note(ix, text, Date.now().toString())
+const notes = [
+  'Hello, dear diary',
+  'Today is a beautiful day'
+].map((text) =>
+  new Note({ text })
 );
 
-const notebook = new Notebook(1);
+const notebook = new Notebook({ notes });
 
 module.exports = {
   // Export methods that your schema can use to interact with your database

@@ -110,6 +110,25 @@ const queryType = new GraphQLObjectType({
   }),
 });
 
+const AddNoteMutation = mutationWithClientMutationId({
+  name: 'AddNote',
+  inputFields: {
+    text: { type: new GraphQLNonNull(GraphQLString) },
+  },
+  outputFields: {
+    notebook: {
+      type: notebookType,
+      resolve: () => getNotebook(),
+    }
+  },
+  mutateAndGetPayload: ({ text }) => {
+    const notebook = getNotebook();
+    const note = new Note({ text });
+    notebook.notes.push(note);
+    return note;
+  },
+});
+
 /**
  * This is the type that will be the root of our mutations,
  * and the entry point into performing writes in our schema.
@@ -117,7 +136,7 @@ const queryType = new GraphQLObjectType({
 const mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    // Add your own mutations here
+    addNote: AddNoteMutation
   })
 });
 
@@ -127,7 +146,5 @@ const mutationType = new GraphQLObjectType({
  */
 export const Schema = new GraphQLSchema({
   query: queryType,
-
-  // Uncomment the following after adding some mutation fields:
-  // mutation: mutationType
+  mutation: mutationType
 });

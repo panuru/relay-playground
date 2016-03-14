@@ -3,8 +3,25 @@ import '../../css/components/App.scss';
 
 import React from 'react';
 import Relay from 'react-relay';
+import AddNoteMutation from '../mutations/AddNoteMutation';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  _handleSubmit(e) {
+    e.preventDefault();
+    Relay.Store.commitUpdate(
+      new AddNoteMutation({
+        notebook: this.props.notebook,
+        text: this.refs.addNoteInput.value,
+      })
+    );
+    this.refs.addNoteInput.value = '';
+  }
+
   render() {
     return (
       <div className="notebook">
@@ -17,16 +34,16 @@ class App extends React.Component {
             </li>
           )}
         </ul>
-        <form className="add-note-form">
+        <form className="add-note-form" onSubmit={this._handleSubmit}>
           <div className="input-with-button input-with-button--small">
-            <input
+            <input ref="addNoteInput"
               className="input add-note-form__input"
               type="text"
-              placeholder="Add a new note"
+              placeholder="Write a new note here"
             />
             <input
               className="button add-note-form__button"
-              type="button"
+              type="submit"
               value="+"
             />
           </div>
@@ -40,14 +57,17 @@ export default Relay.createContainer(App, {
   fragments: {
     notebook: () => Relay.QL`
       fragment on Notebook {
+        id,
         notes(first: 10) {
           edges {
             node {
+              id,
               text,
               timestamp
             },
           },
         },
+        ${AddNoteMutation.getFragment('notebook')},
       }
     `,
   },
