@@ -1,4 +1,5 @@
 @import "~normalize.css";
-@import "partials/box-sizing";
-@import "partials/typography";
-@import "partials/forms";
+@import "base";
+@import "typography";
+@import "icons";
+@import "forms";

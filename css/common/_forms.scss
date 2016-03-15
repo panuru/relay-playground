@@ -1,0 +1,68 @@
+@import "../common/colors";
+
+$color-input-border: $color-border;
+$color-input-border-focus: darken($color-input-border, 10%);
+
+$color-button: lighten($color-accent, 10%);
+$color-button-hover: lighten($color-button, 15%);
+$color-button-focus: lighten($color-button, 10%);
+$color-button-border: darken($color-button, 15%);
+$color-button-border-hover: lighten($color-button-border, 15%);
+$color-button-border-focus: lighten($color-button-border, 10%);
+
+.input {
+    width: 100%;
+    padding: 0.4em 0.3em;
+    border: solid 1px $color-input-border;
+    &::-webkit-input-placeholder {
+        font-style: italic;
+        color: $color-text-highlight;
+    }
+    &:focus {
+        outline: 0;
+        border-color: $color-input-border-focus;
+    }
+}
+
+.button {
+    border: solid 1px $color-button-border;
+    background-color: $color-button;
+    color: $color-text-inverted;
+    &:hover {
+        border-color: $color-button-border-hover;
+        background-color: $color-button-hover;
+    }
+    &:focus {
+        outline: 0;
+        border-color: $color-button-border-hover;
+        background-color: $color-button-hover;
+    }
+}
+
+.input-with-button {
+    position: relative;
+    .input {
+        &:focus {
+            & + .button {
+                border-color: $color-button-border-focus;
+                background-color: $color-button-focus;
+                &:hover {
+                    border-color: $color-button-border-hover;
+                    background-color: $color-button-hover;
+                }
+            }
+        }
+    }
+    .button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+.input-with-button--small {
+    $button-width: 3em;
+
+    .input { padding-right: $button-width; }
+    .button { width: $button-width; }
+}

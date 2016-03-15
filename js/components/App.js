@@ -30,7 +30,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="notebook">
-        <h1 className="notebook__header">My notes</h1>
+        <h1 className="notebook__header">
+          <span className="icon icon-pen"></span>
+          My notes
+        </h1>
         <ul className="notebook__content notes">
           {this.props.notebook.notes.edges.map(edge =>
             <li className="notes__item note" key={edge.node.id}>
@@ -48,10 +51,10 @@ class App extends React.Component {
               type="text"
               placeholder="Write a new note here"
             />
-            <input
-              className="button add-note-form__button"
+            <button
+              className="button add-note-form__button icon icon-arrow-right2"
               type="submit"
-              value="+"
+              value=""
             />
           </div>
         </form>

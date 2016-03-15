@@ -1,3 +1,5 @@
+@import "../common/colors";
+
 .notebook {
     max-width: 960px;
     min-width: 320px;
@@ -9,6 +11,13 @@
         width: 70%;
     }
 }
+.notebook__header {
+    .icon {
+        color: $color-accent;
+        padding-right: 0.3em;
+        font-size: 0.7em;
+    }
+}
 
 .notes {
     list-style: none;
@@ -16,7 +25,7 @@
     margin: 1.5em 0;
 }
 .notes__item {
-    border-bottom: solid 1px lightgray;
+    border-bottom: solid 1px $color-border;
     &:last-child {
         border-bottom: none;
     }
@@ -28,7 +37,7 @@
 .note__timestamp {
     text-align: right;
     font-size: 0.8em;
-    color: darkgray;
+    color: $color-text-highlight;
     font-style: italic;
     letter-spacing: 0.1em;
 }
