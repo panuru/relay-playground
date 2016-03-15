@@ -4,11 +4,11 @@ $color-input-border: $color-border;
 $color-input-border-focus: darken($color-input-border, 10%);
 
 $color-button: lighten($color-accent, 10%);
-$color-button-hover: lighten($color-button, 15%);
-$color-button-focus: lighten($color-button, 10%);
+$color-button-hover: lighten($color-button, 10%);
+$color-button-focus: lighten($color-button, 5%);
 $color-button-border: darken($color-button, 15%);
-$color-button-border-hover: lighten($color-button-border, 15%);
-$color-button-border-focus: lighten($color-button-border, 10%);
+$color-button-border-hover: lighten($color-button-border, 10%);
+$color-button-border-focus: lighten($color-button-border, 5%);
 
 .input {
     width: 100%;

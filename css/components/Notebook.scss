@@ -1,0 +1,15 @@
+@import "../common/colors";
+
+.notebook {}
+
+.notes {
+    list-style: none;
+    padding: 0;
+    margin: 1.5em 0;
+}
+.notes__item {
+    border-bottom: solid 1px $color-border;
+    &:last-child {
+        border-bottom: none;
+    }
+}

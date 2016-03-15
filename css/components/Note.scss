@@ -1,0 +1,12 @@
+@import "../common/colors";
+
+.note {
+    padding: 1.2em 0 0.5em;
+}
+.note__timestamp {
+    text-align: right;
+    font-size: 0.7em;
+    color: $color-text-highlight;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
