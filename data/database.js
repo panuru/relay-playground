@@ -14,6 +14,7 @@ class Notebook {
   constructor({ id, notes }) {
     this.id = id || ++Notebook._lastId;
     this.notes = notes || [];
+    this.notesCount = notes.length;
   }
 }
 
@@ -30,7 +31,14 @@ const notebook = new Notebook({ notes });
 module.exports = {
   // Export methods that your schema can use to interact with your database
   getNote: (id) => notes.find((n) => n.id === id),
-  getNotes: () => notes,
   getNotebook: () => notebook,
+  addNote: (note) => {
+    notes.push(note); notebook.notesCount++;
+  },
+
+  updateNote: () => {},
+
+  deleteNote: () => {},
+
   Note,
 };

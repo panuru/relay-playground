@@ -26,8 +26,10 @@ import {
   Note,
   Notebook,
   getNote,
-  getNotes,
   getNotebook,
+  addNote,
+  updateNote,
+  deleteNote,
 } from './database';
 
 /**
@@ -82,11 +84,15 @@ const notebookType = new GraphQLObjectType({
   description: 'A notebook containing a collection of notes',
   fields: () => ({
     id: globalIdField('Notebook'),
+    notesCount: {
+      type: GraphQLInt,
+      description: 'Total count of notes'
+    },
     notes: {
       type: noteConnection,
       description: 'A list of notes',
       args: connectionArgs,
-      resolve: (notebook, args) => connectionFromArray(getNotes(), args),
+      resolve: (notebook, args) => connectionFromArray(notebook.notes, args),
     }
   }),
   interfaces: [nodeInterface],
@@ -122,9 +128,28 @@ const AddNoteMutation = mutationWithClientMutationId({
     }
   },
   mutateAndGetPayload: ({ text }) => {
-    const notebook = getNotebook();
     const note = new Note({ text });
-    notebook.notes.push(note);
+    addNote(note);
+    return note;
+  },
+});
+
+const UpdateNoteMutation = mutationWithClientMutationId({
+  name: 'UpdateNote',
+  inputFields: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    text: { type: new GraphQLNonNull(GraphQLString) },
+  },
+  outputFields: {
+    note: {
+      type: noteType,
+      resolve: (note) => note,
+    }
+  },
+  mutateAndGetPayload: ({ id, text }) => {
+    const noteId = parseInt(fromGlobalId(id).id, 10);
+    const note = getNote(noteId);
+    note.text = text;
     return note;
   },
 });
@@ -136,7 +161,8 @@ const AddNoteMutation = mutationWithClientMutationId({
 const mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addNote: AddNoteMutation
+    addNote: AddNoteMutation,
+    updateNote: UpdateNoteMutation,
   })
 });
 

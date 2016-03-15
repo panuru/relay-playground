@@ -25,6 +25,9 @@ class Notebook extends React.Component {
   render() {
     return (
       <div className="notebook">
+        <div className="notebook__count">
+          {this.props.notebook.notesCount} notes created.
+        </div>
         <ul className="notebook__content notes">
           {this.props.notebook.notes.edges.map(edge =>
             <li className="notes__item" key={edge.node.id}>
@@ -55,8 +58,8 @@ export default Relay.createContainer(Notebook, {
   fragments: {
     notebook: () => Relay.QL`
       fragment on Notebook {
-        id,
-        notes(first: 10) {
+        notesCount,
+        notes(last: 10) {
           edges {
             node {
               id,

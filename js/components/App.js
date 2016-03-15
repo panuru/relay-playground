@@ -28,7 +28,6 @@ export default Relay.createContainer(App, {
   fragments: {
     notebook: () => Relay.QL`
       fragment on Notebook {
-        id,
         ${Notebook.getFragment('notebook')},
       }
     `,

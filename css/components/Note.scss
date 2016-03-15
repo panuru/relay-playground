@@ -1,7 +1,44 @@
 @import "../common/colors";
 
 .note {
-    padding: 1.2em 0 0.5em;
+    position: relative;
+}
+.note__text {
+    padding: 0.5em 0;
+    display: inline-block;
+}
+.note__edit-form {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+.note--is-editing {
+    .note__text, .note__actions {
+        visibility: hidden !important;
+    }
+    .note__edit-form {
+        display: inherit;
+    }
+}
+.note__actions {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 0.5em;
+    .action {
+        text-decoration: none;
+        padding: 0 0.2em;
+        color: $color-text-highlight;
+        &:hover {
+            color: $color-accent;
+        }
+    }
+}
+.note:hover {
+    .note__actions {
+        visibility: visible;
+    }
 }
 .note__timestamp {
     text-align: right;
@@ -9,4 +46,5 @@
     color: $color-text-highlight;
     font-style: italic;
     letter-spacing: 0.1em;
+    padding-top: 0.6em;
 }
