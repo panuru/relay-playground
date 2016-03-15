@@ -3,12 +3,17 @@ import '../../css/components/App.scss';
 
 import React from 'react';
 import Relay from 'react-relay';
+import moment from 'moment';
 import AddNoteMutation from '../mutations/AddNoteMutation';
 
 class App extends React.Component {
   constructor() {
     super();
     this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  _getFormattedDate(timestamp) {
+    return moment(timestamp).calendar();
   }
 
   _handleSubmit(e) {
@@ -30,7 +35,9 @@ class App extends React.Component {
           {this.props.notebook.notes.edges.map(edge =>
             <li className="notes__item note" key={edge.node.id}>
               {edge.node.text}
-              <div className="note__timestamp">(@{edge.node.timestamp})</div>
+              <div className="note__timestamp">
+                @{this._getFormattedDate(edge.node.timestamp)}
+              </div>
             </li>
           )}
         </ul>

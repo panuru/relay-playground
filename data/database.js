@@ -1,10 +1,10 @@
 class Note {
   static _lastId = 0;
 
-  constructor({ id, text }) {
+  constructor({ id, text, timestamp }) {
     this.id = id || ++Note._lastId;
     this.text = text;
-    this.timestamp = Date.now().toString();
+    this.timestamp = timestamp || Date.now();
   }
 }
 
@@ -19,10 +19,10 @@ class Notebook {
 
 // Mock data
 const notes = [
-  'Hello, dear diary',
-  'Today is a beautiful day'
-].map((text) =>
-  new Note({ text })
+  { text: 'Hello, dear diary', timestamp: '2016-01-01' },
+  { text: 'Today is a beautiful day', timestamp: '2016-03-01' },
+].map(({ text, timestamp }) =>
+  new Note({ text, timestamp: new Date(timestamp) })
 );
 
 const notebook = new Notebook({ notes });

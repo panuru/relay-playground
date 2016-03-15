@@ -70,8 +70,8 @@ const noteType = new GraphQLObjectType({
       description: 'Some insightful content',
     },
     timestamp: {
-      type: GraphQLString,
-      description: 'The exact moment when the note was created',
+      type: GraphQLFloat,
+      description: 'The exact moment when the note was created, in milliseconds',
     },
   }),
   interfaces: [nodeInterface],
