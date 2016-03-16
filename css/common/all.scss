@@ -1,5 +1,8 @@
 @import "~normalize.css";
+
+@import "vars";
+@import "mixins";
 @import "base";
-@import "typography";
 @import "icons";
 @import "forms";
+@import "blocks";

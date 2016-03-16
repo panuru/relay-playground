@@ -35,20 +35,22 @@ class Notebook extends React.Component {
             </li>
           )}
         </ul>
-        <form className="add-note-form" onSubmit={this._handleSubmit}>
-          <div className="input-with-button input-with-button--small">
-            <input ref="addNoteInput"
-              className="input add-note-form__input"
-              type="text"
-              placeholder="Write a new note here"
-            />
-            <button
-              className="button add-note-form__button icon icon-arrow-right2"
-              type="submit"
-              value=""
-            />
-          </div>
-        </form>
+        <div className="notebook__add-note">
+          <form className="add-note__form" onSubmit={this._handleSubmit}>
+            <div className="input-with-button input-with-button--small">
+              <input ref="addNoteInput"
+                className="input add-note__form__input"
+                type="text"
+                placeholder="Write a new note here"
+              />
+              <button
+                className="button add-note__form__button icon icon-arrow-right2"
+                type="submit"
+                value=""
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

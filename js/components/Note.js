@@ -69,19 +69,24 @@ class Note extends React.Component {
         ref="noteElement"
         className={this.state.isEditing ? 'note note--is-editing' : 'note'}
       >
-        <span className="note__text">{text}</span>
-        <form className="note__edit-form" onSubmit={this._handleUpdate}>
-          <input
-            ref="editNoteInput"
-            type="text"
-            className="input note__edit-form__input"
-            defaultValue={text}
-            onBlur={this._handleCancelEdit}
-          />
-        </form>
-        <div className="note__actions">
-          <a className="action icon icon-pencil" href="#" onClick={this._handleEdit} />
-          <a className="action icon icon-bin" href="#" onClick={this._handleDelete} />
+        <div className="author-avatar">
+          <span className="icon icon-user"></span>
+        </div>
+        <div className="note__wrapper">
+          <span className="note__text">{text}</span>
+          <form className="note__edit-form" onSubmit={this._handleUpdate}>
+            <input
+              ref="editNoteInput"
+              type="text"
+              className="input note__edit-form__input"
+              defaultValue={text}
+              onBlur={this._handleCancelEdit}
+            />
+          </form>
+          <div className="note__actions">
+            <a className="action icon icon-pencil" href="#" onClick={this._handleEdit} />
+            <a className="action icon icon-bin" href="#" onClick={this._handleDelete} />
+          </div>
         </div>
         <div className="note__timestamp">
           {this._getFormattedDate()}

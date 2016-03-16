@@ -1,17 +1,67 @@
-@import "../common/colors";
+@import "../common/vars";
+@import "../common/mixins";
 
 .note {
     position: relative;
 }
-.note__text {
-    padding: 0.5em 0;
+.note__wrapper {
     display: inline-block;
+    background-color: $color-background-dark;
+    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: 3.2em;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-radius: 0.2em;
+
+    &:before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8.5px 10px 8.5px 0;
+        border-color: transparent $color-background-dark transparent transparent;
+        position: absolute;
+        left: -10px;
+        top: 50%;
+        margin-top: -8.5px;
+    }
+    &:after {
+        content: '';
+        display: none;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8.5px 10px 8.5px 0;
+        border-color: transparent $color-background transparent transparent;
+        position: absolute;
+        left: -8px;
+        top: 50%;
+        margin-top: -8.5px;
+    }
+}
+.note__text {
+    font-family: $typeface-sans-serif;
+    margin: 0 3em 0 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 .note__edit-form {
     display: none;
     position: absolute;
     width: 100%;
+    height: 100%;
     top: 0;
+    input, input:focus {
+        display: block;
+        height: 100%;
+        border-color: $color-background-dark;
+    }
 }
 .note--is-editing {
     .note__text, .note__actions {
@@ -20,15 +70,23 @@
     .note__edit-form {
         display: inherit;
     }
+    .note__wrapper {
+        &:after {
+            display: block;
+        }
+    }
 }
 .note__actions {
     visibility: hidden;
     position: absolute;
+    display: inline;
+    line-height: 1em;
     right: 0;
-    top: 0.5em;
+    top: 50%;
+    margin-top: -0.5em;
     .action {
         text-decoration: none;
-        padding: 0 0.2em;
+        padding: 0 0.3em;
         color: $color-text-highlight;
         &:hover {
             color: $color-accent;
@@ -42,9 +100,8 @@
 }
 .note__timestamp {
     text-align: right;
-    font-size: 0.7em;
+    font-size: 0.75em;
     color: $color-text-highlight;
     font-style: italic;
-    letter-spacing: 0.1em;
-    padding-top: 0.6em;
+    padding-top: 0.5em;
 }

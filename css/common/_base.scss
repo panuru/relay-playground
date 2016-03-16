@@ -1,5 +1,3 @@
-@import "../common/colors";
-
 html {
     box-sizing: border-box;
 }
@@ -10,4 +8,14 @@ html {
 body {
     background-color: $color-background;
     color: $color-text;
+    font: 18px/1 $typeface-serif;
 }
+h1, h2, h3, h4 {
+    font-family: $typeface-sans-serif;
+    font-weight: 300;
+}
+h1 {
+    font-size: 2.5em;
+    margin: 0.75em 0 1.33em;
+}
+// Add more styles for h2-h4, p, etc as needed
