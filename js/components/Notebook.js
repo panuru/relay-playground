@@ -4,7 +4,6 @@ import React from 'react';
 import Relay from 'react-relay';
 import Note from './Note';
 import AddNoteMutation from '../mutations/AddNoteMutation';
-import DeleteNoteMutation from '../mutations/DeleteNoteMutation';
 
 class Notebook extends React.Component {
   constructor() {
@@ -70,7 +69,6 @@ export default Relay.createContainer(Notebook, {
         },
         ${Note.getFragment('notebook')}
         ${AddNoteMutation.getFragment('notebook')},
-        ${DeleteNoteMutation.getFragment('notebook')}
       }
     `,
   },

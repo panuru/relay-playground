@@ -171,7 +171,7 @@ const DeleteNoteMutation = mutationWithClientMutationId({
   mutateAndGetPayload: ({ id, text }) => {
     const noteId = parseInt(fromGlobalId(id).id, 10);
     deleteNote(noteId);
-    return id;
+    return { id };
   },
 });
 

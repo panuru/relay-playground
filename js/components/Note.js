@@ -98,7 +98,8 @@ export default Relay.createContainer(Note, {
         id,
         text,
         timestamp,
-        ${UpdateNoteMutation.getFragment('note')}
+        ${UpdateNoteMutation.getFragment('note')},
+        ${DeleteNoteMutation.getFragment('note')}
       }
     `,
     notebook: () => Relay.QL`
