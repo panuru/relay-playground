@@ -28,17 +28,30 @@ const notes = [
 
 const notebook = new Notebook({ notes });
 
+const getNote = (id) => notes.find((n) => n.id === id);
+
+const addNote = (note) => {
+  notes.push(note);
+  notebook.notesCount++;
+};
+
+const updateNote = (id, fields) => Object.assign(getNote(id), fields);
+
+const deleteNote = (id) => {
+  const indexOfNote = notes.findIndex((n) => n.id === id);
+  if (indexOfNote < 0) { throw Error(`Error deleting note {id=${id}}: note not found`); }
+
+  notes.splice(indexOfNote, 1);
+  notebook.notesCount--;
+};
+
 module.exports = {
   // Export methods that your schema can use to interact with your database
-  getNote: (id) => notes.find((n) => n.id === id),
+  getNote,
+  addNote,
+  updateNote,
+  deleteNote,
   getNotebook: () => notebook,
-  addNote: (note) => {
-    notes.push(note); notebook.notesCount++;
-  },
-
-  updateNote: () => {},
-
-  deleteNote: () => {},
-
   Note,
+  Notebook
 };

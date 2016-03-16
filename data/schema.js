@@ -148,9 +148,30 @@ const UpdateNoteMutation = mutationWithClientMutationId({
   },
   mutateAndGetPayload: ({ id, text }) => {
     const noteId = parseInt(fromGlobalId(id).id, 10);
-    const note = getNote(noteId);
-    note.text = text;
+    const note = updateNote(noteId, { text });
     return note;
+  },
+});
+
+const DeleteNoteMutation = mutationWithClientMutationId({
+  name: 'DeleteNote',
+  inputFields: {
+    id: { type: new GraphQLNonNull(GraphQLID) }
+  },
+  outputFields: {
+    notebook: {
+      type: notebookType,
+      resolve: () => getNotebook(),
+    },
+    deletedId: {
+      type: GraphQLID,
+      resolve: (id) => id,
+    }
+  },
+  mutateAndGetPayload: ({ id, text }) => {
+    const noteId = parseInt(fromGlobalId(id).id, 10);
+    deleteNote(noteId);
+    return id;
   },
 });
 
@@ -163,6 +184,7 @@ const mutationType = new GraphQLObjectType({
   fields: () => ({
     addNote: AddNoteMutation,
     updateNote: UpdateNoteMutation,
+    deleteNote: DeleteNoteMutation,
   })
 });
 

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import moment from 'moment';
 import UpdateNoteMutation from '../mutations/UpdateNoteMutation';
+import DeleteNoteMutation from '../mutations/DeleteNoteMutation';
 
 class Note extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class Note extends React.Component {
     this._handleEdit = this._handleEdit.bind(this);
     this._handleUpdate = this._handleUpdate.bind(this);
     this._handleCancelEdit = this._handleCancelEdit.bind(this);
+    this._handleDelete = this._handleDelete.bind(this);
   }
 
   componentDidUpdate() {
@@ -46,6 +48,16 @@ class Note extends React.Component {
     this.setState({ isEditing: false });
   }
 
+  _handleDelete(e) {
+    e.preventDefault();
+    Relay.Store.commitUpdate(
+      new DeleteNoteMutation({
+        note: this.props.note,
+        notebook: this.props.notebook,
+      })
+    );
+  }
+
   _getFormattedDate() {
     return moment(this.props.note.timestamp).calendar();
   }
@@ -69,6 +81,7 @@ class Note extends React.Component {
         </form>
         <div className="note__actions">
           <a className="action icon icon-pencil" href="#" onClick={this._handleEdit} />
+          <a className="action icon icon-bin" href="#" onClick={this._handleDelete} />
         </div>
         <div className="note__timestamp">
           {this._getFormattedDate()}
@@ -88,5 +101,10 @@ export default Relay.createContainer(Note, {
         ${UpdateNoteMutation.getFragment('note')}
       }
     `,
+    notebook: () => Relay.QL`
+      fragment on Notebook {
+        ${DeleteNoteMutation.getFragment('notebook')}
+      }
+    `
   },
 });
