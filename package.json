@@ -18,7 +18,8 @@
     "unmockedModulePathPatterns": [
       "react",
       "react-dom",
-      "react-addons-test-utils"
+      "react-addons-test-utils",
+      "moment"
     ]
   },
   "dependencies": {
