@@ -28,7 +28,7 @@ class Notebook extends React.Component {
         <div className="notebook__count">
           {this.props.notebook.notesCount} notes created.
         </div>
-        <ul className="notebook__content notes">
+        <ul className="notebook__content notes" ref="notes">
           {this.props.notebook.notes.edges.map(edge =>
             <li className="notes__item" key={edge.node.id}>
               <Note note={edge.node} notebook={this.props.notebook} />

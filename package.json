@@ -11,6 +11,12 @@
     "test": "jest"
   },
   "jest": {
+    "collectCoverage": true,
+    "collectCoverageOnlyFrom": {
+      "js/components/Note.js": true,
+      "js/components/Notebook.js": true,
+      "js/components/App.js": true
+    },
     "testFileExtensions": [
       "js"
     ],

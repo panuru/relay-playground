@@ -5,7 +5,11 @@ const note = {
 };
 
 const notebook = {
-  notes: [note],
+  notes: {
+    edges: [
+      { node: note }
+    ]
+  },
   id: 1,
   notesCount: 1
 };
