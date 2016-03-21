@@ -7,7 +7,19 @@
   "scripts": {
     "start": "npm run lint && babel-node ./server.js",
     "update-schema": "babel-node ./scripts/updateSchema.js",
-    "lint": "eslint data js scripts ./*.js && jscs data js scripts ./*.js"
+    "lint": "eslint data js scripts ./*.js && jscs data js scripts ./*.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testFileExtensions": [
+      "js"
+    ],
+    "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils"
+    ]
   },
   "dependencies": {
     "babel-core": "^6.5.2",
@@ -42,6 +54,9 @@
     "webpack-dev-server": "1.14.1"
   },
   "devDependencies": {
-    "babel-cli": "6.5.1"
+    "babel-cli": "6.5.1",
+    "babel-jest": "^9.0.3",
+    "jest-cli": "^0.9.2",
+    "react-addons-test-utils": "^0.14.7"
   }
 }
