@@ -4,10 +4,11 @@
 var babelJest = require('babel-jest');
 
 module.exports = {
-  process: function(src, path) {
+  process: (src, path) => {
     if (path.match(/\.s?css$/)) {
       return '';
     }
+
     return babelJest.process(src, path);
   }
 };

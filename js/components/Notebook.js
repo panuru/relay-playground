@@ -36,7 +36,10 @@ class Notebook extends React.Component {
           )}
         </ul>
         <div className="notebook__add-note">
-          <form className="add-note__form" onSubmit={this._handleSubmit}>
+          <form ref="addNoteForm"
+            className="add-note__form"
+            onSubmit={this._handleSubmit}
+          >
             <div className="input-with-button input-with-button--small">
               <input ref="addNoteInput"
                 className="input add-note__form__input"
