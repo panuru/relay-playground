@@ -73,8 +73,11 @@ class Note extends React.Component {
           <span className="icon icon-user"></span>
         </div>
         <div className="note__wrapper">
-          <span className="note__text">{text}</span>
-          <form className="note__edit-form" onSubmit={this._handleUpdate}>
+          <span className="note__text" ref="noteText">{text}</span>
+          <form ref="editNoteForm"
+            className="note__edit-form"
+            onSubmit={this._handleUpdate}
+          >
             <input
               ref="editNoteInput"
               type="text"
@@ -84,11 +87,17 @@ class Note extends React.Component {
             />
           </form>
           <div className="note__actions">
-            <a className="action icon icon-pencil" href="#" onClick={this._handleEdit} />
-            <a className="action icon icon-bin" href="#" onClick={this._handleDelete} />
+            <a ref="editButton"
+              className="action icon icon-pencil"
+              href="#"
+              onClick={this._handleEdit} />
+            <a ref="deleteButton"
+              className="action icon icon-bin"
+              href="#"
+              onClick={this._handleDelete} />
           </div>
         </div>
-        <div className="note__timestamp">
+        <div className="note__timestamp" ref="noteTimestamp">
           {this._getFormattedDate()}
         </div>
       </div>

@@ -24,6 +24,11 @@ describe('Notebook', () => {
       .toEqual(fixtures.notebook.notes.edges.length);
   });
 
+  it('should render notes count', () => {
+    expect(notebook.refs.notesCount.textContent)
+      .toEqual(fixtures.notebook.notes.edges.length.toString());
+  });
+
   it('should add a note', () => {
     spyOn(Relay.Store, 'commitUpdate');
 

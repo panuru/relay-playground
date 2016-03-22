@@ -26,7 +26,8 @@ class Notebook extends React.Component {
     return (
       <div className="notebook">
         <div className="notebook__count">
-          {this.props.notebook.notesCount} notes created.
+          <span ref="notesCount">{this.props.notebook.notesCount}</span>
+          &nbsp;notes created.
         </div>
         <ul className="notebook__content notes" ref="notes">
           {this.props.notebook.notes.edges.map(edge =>
