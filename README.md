@@ -1,6 +1,8 @@
-# Relay Starter Kit
+# Relay/GraphQL notebook/todo list
 
-This kit includes an app server, a GraphQL server, and a transpiler that you can use to get started building an app with Relay. For a walkthrough, see the [Relay tutorial](https://facebook.github.io/relay/docs/tutorial.html).
+A small demo application using Relay and GraphQL.
+
+Based on [Relay Starter Kit](https://github.com/relayjs/relay-starter-kit)
 
 ## Installation
 
@@ -27,6 +29,20 @@ regenerate `data/schema.json`, and restart the server:
 ```
 npm run update-schema
 npm start
+```
+
+Lint/code quality:
+
+```
+npm run lint
+```
+
+Code quality is run automatically on server start and code updates.
+
+Unit tests:
+
+```
+npm test
 ```
 
 ## License

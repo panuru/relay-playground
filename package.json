@@ -1,9 +1,9 @@
 {
-  "name": "relay-starter-kit",
+  "name": "relay-notebook-demo",
   "private": true,
-  "description": "A quick way to get up and running with Relay",
-  "repository": "facebook/relay-starter-kit",
-  "version": "0.1.0",
+  "description": "A notebook app built with Relay",
+  "repository": "panuru/relay-playground",
+  "version": "1.0.0",
   "scripts": {
     "start": "npm run lint && babel-node ./server.js",
     "update-schema": "babel-node ./scripts/updateSchema.js",
