@@ -32,6 +32,7 @@ export class MockStore {
     } else if (this.failureResponse) {
       callbacks.onFailure(this.failureResponse);
     }
+
     this.reset();
   }
 
@@ -53,10 +54,12 @@ export default {
   Mutation,
   Route: Relay.Route,
   PropTypes: Relay.PropTypes,
+
   createContainer: (component, specs) => {
     /* eslint no-param-reassign:0 */
     component.getRelaySpecs = () => specs;
     return component;
   },
+
   Store,
 };

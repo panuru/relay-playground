@@ -90,11 +90,13 @@ class Note extends React.Component {
             <a ref="editButton"
               className="action icon icon-pencil"
               href="#"
-              onClick={this._handleEdit} />
+              onClick={this._handleEdit}
+            />
             <a ref="deleteButton"
               className="action icon icon-bin"
               href="#"
-              onClick={this._handleDelete} />
+              onClick={this._handleDelete}
+            />
           </div>
         </div>
         <div className="note__timestamp" ref="noteTimestamp">

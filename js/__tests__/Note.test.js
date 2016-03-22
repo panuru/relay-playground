@@ -24,7 +24,7 @@ describe('Note', () => {
   it('should render single note', () => {
     expect(note.refs.noteText.textContent).toEqual(fixtures.note.text);
 
-    let expectedTimestamp = note._getFormattedDate(fixtures.note.timestamp);
+    const expectedTimestamp = note._getFormattedDate(fixtures.note.timestamp);
 
     expect(note.refs.noteTimestamp.textContent).toEqual(expectedTimestamp);
   });
@@ -37,7 +37,6 @@ describe('Note', () => {
 
     TestUtils.Simulate.blur(note.refs.editNoteInput);
     expect(note.state.isEditing).toEqual(false);
-
   });
 
   it('should display original note text in edit form', () => {
@@ -55,8 +54,8 @@ describe('Note', () => {
 
     expect(Relay.Store.commitUpdate).toHaveBeenCalled();
 
-    let mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
-    let mutationVariables = mutation.getVariables();
+    const mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
+    const mutationVariables = mutation.getVariables();
 
     expect(mutation instanceof UpdateNoteMutation).toEqual(true);
     expect(mutationVariables.text).toEqual('hello');
@@ -69,8 +68,8 @@ describe('Note', () => {
 
     expect(Relay.Store.commitUpdate).toHaveBeenCalled();
 
-    let mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
-    let mutationVariables = mutation.getVariables();
+    const mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
+    const mutationVariables = mutation.getVariables();
 
     expect(mutation instanceof DeleteNoteMutation).toEqual(true);
     expect(mutationVariables.id).toEqual(fixtures.note.id);

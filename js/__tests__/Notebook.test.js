@@ -37,8 +37,8 @@ describe('Notebook', () => {
 
     expect(Relay.Store.commitUpdate).toHaveBeenCalled();
 
-    let mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
-    let mutationVariables = mutation.getVariables();
+    const mutation = Relay.Store.commitUpdate.calls.argsFor(0)[0];
+    const mutationVariables = mutation.getVariables();
 
     expect(mutation instanceof AddNoteMutation).toEqual(true);
     expect(mutationVariables.text).toEqual('hello');
