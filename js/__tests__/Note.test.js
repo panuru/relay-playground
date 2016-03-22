@@ -1,15 +1,15 @@
 /* eslint-env jest, jasmine */
 
-jest.unmock('../Note');
-jest.unmock('../../mutations/UpdateNoteMutation');
-jest.unmock('../../mutations/DeleteNoteMutation');
+jest.unmock('../components/Note');
+jest.unmock('../mutations/UpdateNoteMutation');
+jest.unmock('../mutations/DeleteNoteMutation');
 
 import React from 'react';
 import Relay from 'react-relay';
 import TestUtils from 'react-addons-test-utils';
-import Note from '../Note';
-import UpdateNoteMutation from '../../mutations/UpdateNoteMutation';
-import DeleteNoteMutation from '../../mutations/DeleteNoteMutation';
+import Note from '../components/Note';
+import UpdateNoteMutation from '../mutations/UpdateNoteMutation';
+import DeleteNoteMutation from '../mutations/DeleteNoteMutation';
 import fixtures from '../__fixtures__/all-fixtures';
 
 describe('Note', () => {

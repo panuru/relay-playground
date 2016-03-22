@@ -1,13 +1,13 @@
 /* eslint-env jest, jasmine */
 
-jest.unmock('../Notebook');
-jest.unmock('../../mutations/AddNoteMutation');
+jest.unmock('../components/Notebook');
+jest.unmock('../mutations/AddNoteMutation');
 
 import React from 'react';
 import Relay from 'react-relay';
 import TestUtils from 'react-addons-test-utils';
-import Notebook from '../Notebook';
-import AddNoteMutation from '../../mutations/AddNoteMutation';
+import Notebook from '../components/Notebook';
+import AddNoteMutation from '../mutations/AddNoteMutation';
 import fixtures from '../__fixtures__/all-fixtures';
 
 describe('Notebook', () => {
